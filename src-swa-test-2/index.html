@@ -25,7 +25,7 @@
 
     <script>
         (async function () {
-            const { text } = await (await fetch(`https://mlad-am-azure-functions-test.azurewebsites.net/api/HttpExample?name=test234`)).json();
+            const { text } = await (await fetch(`https://mlad-am-azure-functions-test.azurewebsites.net/api/HttpExample?name=test234`)).text();
             document.querySelector('#name').textContent = text;
         }());
     </script>
