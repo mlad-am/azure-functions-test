@@ -5,21 +5,24 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./src/styles.css" />
+    <!-- <link rel="stylesheet" href="./src/styles.css" /> -->
 </head>
 <script type="module" src="https://unpkg.com/deep-chat@2.1.1/dist/deepChat.bundle.js"></script>
 
 <body>
-    <h1>Deep Chat AM 1</h1>
+    <h1>Chat AM</h1>
     <!-- Attributes can be set as strings either directly on the element (demo/textInput) or via a `setAttribute` method on its reference (introMessage).
       When passing JSON objects make sure that they are first correctly stringified (use the following tool https://jsonlint.com/), functions assigned
       to properties must not have external references and all regex values are properly escaped.
       You can also pass values into the component via properties by using the element reference (history).
       -->
-    <deep-chat id="chat-element" demo="true" textInput='{"placeholder":{"text": "Welcome to the demo!"}}'></deep-chat>
+    <deep-chat id="chat-element" demo="true"
+    connect='{
+        "url": "https://mlad-am-azure-functions-test.azurewebsites.net/api/MessageFunctionTest",
+        "method": "POST"}
+        textInput='{"placeholder":{"text": "Welcome to the demo!"}}'  style="border-radius: 10px; position: fixed; bottom: 15%; right: 15%; z-index: 1"></deep-chat>
 
     <main>
-        <h1>Vanilla JavaScript App</h1>
         <p>Loading content from the API: <b id="name">...</b></p>
     </main>
 

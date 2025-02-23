@@ -11,33 +11,32 @@ import com.microsoft.azure.functions.annotation.HttpTrigger;
 
 import java.util.Optional;
 
-/**
- * Azure Functions with HTTP Trigger.
- */
 public class Function {
+
     /**
-     * This function listens at endpoint "/api/HttpExample". Two ways to invoke it using "curl" command in bash:
-     * 1. curl -d "HTTP Body" {your host}/api/HttpExample
-     * 2. curl "{your host}/api/HttpExample?name=HTTP%20Query"
+     * This function listens at endpoint "/api/GiftMessageFunction" and accepts POST requests.
+     * It ignores the request body and always returns a JSON response with a message "ОК".
      */
-    @FunctionName("HttpExample")
+    @FunctionName("MessageFunctionTest")
     public HttpResponseMessage run(
             @HttpTrigger(
                 name = "req",
-                methods = {HttpMethod.GET, HttpMethod.POST},
+                methods = {HttpMethod.POST},
                 authLevel = AuthorizationLevel.ANONYMOUS)
-                HttpRequestMessage<Optional<String>> request,
+            HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
-        context.getLogger().info("Java HTTP trigger processed a request.");
+        
+        context.getLogger().info("Processing GiftMessageFunction request.");
 
-        // Parse query parameter
-        final String query = request.getQueryParameters().get("name");
-        final String name = request.getBody().orElse(query);
+        // Retrieve the request body (ignored for this implementation)
+        String requestBody = request.getBody().orElse("");
 
-        if (name == null) {
-            return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass a name on the query string or in the request body").build();
-        } else {
-            return request.createResponseBuilder(HttpStatus.OK).body("Hello :), " + name).build();
-        }
+        // Manually construct the JSON response string without using ObjectMapper.
+        String jsonResponse = "{\"message\": {\"role\": \"ai\", \"text\": \"ОК\"}}";
+
+        return request.createResponseBuilder(HttpStatus.OK)
+                      .header("Content-Type", "application/json")
+                      .body(jsonResponse)
+                      .build();
     }
 }
