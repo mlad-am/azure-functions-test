@@ -32,7 +32,17 @@ public class Function {
         String requestBody = request.getBody().orElse("");
 
         // Manually construct the JSON response string without using ObjectMapper.
-        String jsonResponse = "{role: \"bob\", text: \"Message from bob\"}";
+        String jsonResponse = "{\r\n" + //
+                        "  \"message\": {\r\n" + //
+                        "    \"role\": \"ai\",\r\n" + //
+                        "    \"text\": \"ОК\",\r\n" + //
+                        "    \"files\": [],\r\n" + //
+                        "    \"html\": \"\"\r\n" + //
+                        "  },\r\n" + //
+                        "  \"error\": \"\",\r\n" + //
+                        "  \"overwrite\": false\r\n" + //
+                        "}\r\n" + //
+                        "";
 
         return request.createResponseBuilder(HttpStatus.OK)
                       .header("Content-Type", "application/json")
