@@ -16,10 +16,11 @@
       to properties must not have external references and all regex values are properly escaped.
       You can also pass values into the component via properties by using the element reference (history).
       -->
-    <deep-chat id="chat-element"
-    connect='{
-        "url": "https://mlad-am-azure-functions-test.azurewebsites.net/api/MessageFunctionTest"}'
-        textInput='{"placeholder":{"text": "Welcome to the demo!"}}'  style="border-radius: 10px; position: fixed; bottom: 0%; right: 0%; z-index: 1"></deep-chat>
+    <deep-chat id="chat-element" 
+        connect='{
+        "url": "https://mlad-am-azure-functions-test.azurewebsites.net/api/MessageFunctionTest"}' 
+        textInput='{"placeholder":{"text": "Welcome to the demo!"}}'
+        style="border-radius: 10px; position: fixed; bottom: 0%; right: 0%; z-index: 1"></deep-chat>
 
     <main>
         <p>Loading content from the API: <b id="name">...</b></p>
