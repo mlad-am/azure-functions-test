@@ -50,7 +50,7 @@ public class Function {
         }
 
         // Manually construct the JSON response string without using ObjectMapper.
-        String jsonResponse = "{role: \"ai\", text: \" Test 5 " + text +"\"}";
+        String jsonResponse = "{\"role\": \"ai\", \"text\": \" Test 5 " + text +"\"}";
 
         return request.createResponseBuilder(HttpStatus.OK)
                       .header("Content-Type", "application/json")
